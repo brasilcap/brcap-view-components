@@ -44,6 +44,9 @@ export class CapSelectComponent implements ControlValueAccessor, OnInit {
   @Output()
   focus = new EventEmitter();
 
+  @Output()
+  change = new EventEmitter();
+
   @ViewChild("select")
   select;
 
@@ -67,6 +70,11 @@ export class CapSelectComponent implements ControlValueAccessor, OnInit {
 
   onFocus(event) {
     return this.focus.emit(event);
+  }
+
+  onChange(event) {
+    this.writeValue(event);
+    this.change.emit(this.innerValue);
   }
 
   get value(): any {

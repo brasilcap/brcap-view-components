@@ -9,6 +9,7 @@ import { CapGridPaginationComponent } from "./cap-grid-pagination/cap-grid-pagin
 export class AppComponent implements OnInit {
   private brcapUtil;
   funcionalidades = [];
+  canais = [];
   colors = {};
   collapse = false;
 
@@ -330,6 +331,21 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.canais = [
+      {
+        label: "Opção 1",
+        value: 1
+      },
+      {
+        label: "Opção 2",
+        value: 2
+      },
+      {
+        label: "Opção 3",
+        value: 3
+      }
+    ];
+
     this.radios = [
       {
         label: "Opção 1",
@@ -417,6 +433,10 @@ export class AppComponent implements OnInit {
     }
     this.erroMsg = "Campo Obrigatório";
     return true;
+  }
+
+  onChange(value) {
+    console.log("Value change!! ",value);
   }
 
   login(event) {
