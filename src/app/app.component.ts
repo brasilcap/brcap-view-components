@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { CapGridPaginationComponent } from "./cap-grid-pagination/cap-grid-pagination.component";
 
 @Component({
@@ -6,7 +6,11 @@ import { CapGridPaginationComponent } from "./cap-grid-pagination/cap-grid-pagin
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+
+  constructor() {
+
+  }
   private brcapUtil;
   funcionalidades = [];
   canais = [];
@@ -30,7 +34,8 @@ export class AppComponent implements OnInit {
   aaaa = "Teste texto";
   off = false;
   on = true;
-  
+  mascara;
+
   menu = [
     {
       codigo: "posvenda#gravame",
@@ -313,18 +318,33 @@ export class AppComponent implements OnInit {
   gridPagination: CapGridPaginationComponent;
   columns = ["ID", "NOME"];
   items = [[1, "JOÃO"], [2, "MARIA"], [3, "JOSÉ"], [4, "Anna"], [5, "Miguel"], [6, "Gabriel"], [7, "Raphael"], [8, "Pedro"], [9, "Paulo"], [10, "Joaquim"],
-           [11, "JOÃO2"], [12, "MARIA2"], [13, "JOSÉ2"], [14, "Anna2"], [15, "Miguel2"], [16, "Gabriel2"], [17, "Raphael2"], [18, "Pedro2"], [19, "Paulo2"], [20, "Joaquim2"],
-           [21, "JOÃO"], [22, "MARIA"], [23, "JOSÉ"], [24, "Anna"], [25, "Miguel"], [26, "Gabriel"], [27, "Raphael"], [28, "Pedro"]
-          ];
-  rowOptions = ["Visualizar","Editar","Excluir"];
+  [11, "JOÃO2"], [12, "MARIA2"], [13, "JOSÉ2"], [14, "Anna2"], [15, "Miguel2"], [16, "Gabriel2"], [17, "Raphael2"], [18, "Pedro2"], [19, "Paulo2"], [20, "Joaquim2"],
+  [21, "JOÃO"], [22, "MARIA"], [23, "JOSÉ"], [24, "Anna"], [25, "Miguel"], [26, "Gabriel"], [27, "Raphael"], [28, "Pedro"]
+  ];
+  rowOptions = ["Visualizar", "Editar", "Excluir"];
 
   ngAfterViewInit() {
     if (this.gridPagination) {
       setTimeout(_ => {
         this.gridPagination.setPage(true);
-      });
+      }, 0);
     }
+
   }
+
+  // cpf;
+  // changeMask(event) {
+  //   var digit = event.key.replace(/\D/g, '');
+  //   var value = this.cpf.replace(/\D/g, '');
+  //   var size = value.concat(digit).length;
+  //   if (size === 14) {
+  //     this.mascara = "00.000.000/0000-00"
+  //   } else if (size === 11) {
+  //     this.mascara = "000.000.000-00000"
+  //   } else{
+  //     this.mascara = "";
+  //   }
+  // }
 
   toogleCollapse() {
     this.collapse = !this.collapse;

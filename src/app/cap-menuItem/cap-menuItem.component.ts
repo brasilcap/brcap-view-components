@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from "@angular/core";
+import { ValueTransformer } from "@angular/compiler/src/util";
 
 @Component({
   selector: "cap-menuItem",
@@ -21,11 +22,21 @@ export class CapMenuItemComponent {
   @ViewChild("menuItem")
   menuItem: ElementRef;
 
+
+  @Input("blocSelecionado")
+  blocSelecionado
   @Input("itemSelecionado")
   itemSelecionado
 
   @Output()
   selecionar = new EventEmitter();
+
+  @Output()
+  selecionarToggle = new EventEmitter();
+
+  
+
+  codigoTrat: string;
 
   exibir = false;
   icone;
@@ -36,14 +47,29 @@ export class CapMenuItemComponent {
 
   constructor() {}
 
+  ngOnInit(){
+    let codigoDividido = this.value.codigo.split('#',2);
+    this.codigoTrat = codigoDividido[1];
+  }
+
   public getIconUrl(icone) {
     return icone ? icone.replace(/#/g, "%23") : null;
   }
 
   toggleClass(hasChild) {
+
+    let codigoDividido = this.value.codigo.split('#',2);
+    this.codigoTrat = codigoDividido[1];
+
+    this.selecionar.emit(hasChild[0].codigo);
+
     if (hasChild) {
       this.exibir = !this.exibir;
     }
+   
+    // console.log("codigoTrat = "+ this.codigoTrat);
+    // console.log("blocSelecionado = "+ this.blocSelecionado);
+    // console.log("hasChild.codigo = "+hasChild[0].codigo);
   }
  
 
@@ -51,7 +77,6 @@ export class CapMenuItemComponent {
    { 
     this.subClass = "ativado"
     this.selecionar.emit(item.codigo);
-     
   }
    
 }

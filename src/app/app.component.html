@@ -1,7 +1,7 @@
 <cap-menu [value]="menu" modulo="monitor"></cap-menu>
 <cap-header username="Joaquim José Xavier"></cap-header>
 
- <div class="content-wrapper">
+<div class="content-wrapper">
 
   <!-- <div class="content-header">
     <div class="row">
@@ -22,9 +22,13 @@
 
   <div class="content">
 
-      <!-- <cap-scrollUp></cap-scrollUp> -->
+    <!-- <cap-inputText [(ngModel)]="cpf" (keydown)="changeMask($event)" [mask]="mascara"></cap-inputText> -->
 
-      <!-- <cap-button icon="calendario"></cap-button>  -->
+    <!-- <input id="test">
+ -->
+    <!-- <cap-scrollUp></cap-scrollUp> -->
+
+    <!-- <cap-button icon="calendario"></cap-button>  -->
 
     <!-- <div class="box abas">
       <cap-tabPanel class="fix">
@@ -49,7 +53,7 @@
       </cap-tabPanel>
     </div> -->
 
-     <!-- <div class="row">
+    <!-- <div class="row">
       <div class="col-md-3">
         <cap-inputText label="Nome" icon="busca"></cap-inputText>
       </div>
@@ -59,11 +63,11 @@
     </div> -->
 
     <!-- <div class="col-md-10 button-container"> -->
-      <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items" fullTable="full-table">
-      </cap-grid-pagination>
+    <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items" fullTable="full-table">
+    </cap-grid-pagination>
 
-      <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items">
-      </cap-grid-pagination>
+    <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items">
+    </cap-grid-pagination>
     <!-- </div> -->
 
     <!-- <div class="col-md-10 button-container">

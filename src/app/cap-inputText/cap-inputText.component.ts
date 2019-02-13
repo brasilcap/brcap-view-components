@@ -186,6 +186,14 @@ export class CapInputTextComponent implements AfterViewInit, ControlValueAccesso
     }
   }
 
+  public ngOnChanges() {
+    if(this.mask){
+      $(this.input.nativeElement).unmask();
+      $(this.input.nativeElement).mask(this.mask);
+    }
+
+  }
+
   hasError(): boolean {
     return this.inputModel.invalid && (this.inputModel.dirty || this.inputModel.touched);
   }

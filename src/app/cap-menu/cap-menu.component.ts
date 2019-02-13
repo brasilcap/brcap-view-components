@@ -17,6 +17,7 @@ export class CapMenuComponent implements OnInit {
   @ViewChild("divMenu")
   divMenu: ElementRef;
 
+  blocSelecionado;
   itemSelecionado;
 
   constructor() {}
@@ -30,6 +31,17 @@ export class CapMenuComponent implements OnInit {
   }
 
   public selecionarItem(item) {
+
+    let blocDividido = item.split('#',2);
+    this.blocSelecionado = blocDividido[1];
+    console.log("blocSelecionado1 = "+this.blocSelecionado);
+
     this.itemSelecionado = item;
   }
+
+  // selecionarToggle(blocSelecionado){
+
+  //    this.blocSelecionado = blocSelecionado;
+
+  // }
 }

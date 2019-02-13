@@ -1,5 +1,6 @@
 <div class="cap-menu" #divMenu>
   <div *ngFor="let modulo of value">
-    <cap-menuItem [value]="modulo" [itemSelecionado]="itemSelecionado" (selecionar)="selecionarItem($event)" principal="true" styleClass="principal"></cap-menuItem>
+    <cap-menuItem [value]="modulo" [blocSelecionado]="blocSelecionado" [itemSelecionado]="itemSelecionado" (selecionar)="selecionarItem($event)" 
+      principal="true" styleClass="principal"></cap-menuItem>
   </div>
 </div>
