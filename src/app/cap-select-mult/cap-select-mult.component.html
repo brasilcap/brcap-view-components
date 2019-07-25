@@ -1,0 +1,13 @@
+<label [for]="id" class="label-input {{styleClass}}" *ngIf="label?.length">
+    {{label}}</label>
+<div class="multiSelect">
+  <ng-multiselect-dropdown
+    [placeholder]="placeholder"
+    [data]="data"
+    [(ngModel)]="value"
+    [settings]="dropdownSettings"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown>
+</div>

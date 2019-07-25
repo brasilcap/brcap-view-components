@@ -10,10 +10,6 @@
   padding: 10px 12px;
 }
 
-.cap-inputTextArea.error {
-  border: 1.5px solid #b00020;
-}
-
 .cap-inputTextArea:disabled {
   border: 1px solid #c9c9c9;
   background-color: #ffffff;
@@ -39,22 +35,14 @@ label {
   vertical-align: middle;
 }
 
-label.disabled {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-label.error {
-  color: #b00020;
-}
-
-.ico-error {
+/* .ico-error {
   float: right;
   position: relative;
   top: -35px;
   right: 14px;
   font-size: 20px;
   color: #b00020;
-}
+} */
 
 ::placeholder {
   color: rgba(0, 0, 0, 0.5);

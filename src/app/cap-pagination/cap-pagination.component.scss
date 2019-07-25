@@ -1,0 +1,71 @@
+.pagination {
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffffff;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+.description {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.page-counts {
+  margin-right: 50px;
+}
+
+button {
+  border: none;
+  background: transparent;
+  background-color: #378443;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  outline: none;
+
+  &.active {
+    background-color: #ffffff;
+  }
+
+  &.prev {
+    margin-right: -3px;
+  }
+
+  &.next {
+    margin-left: -3px;
+  }
+
+  &.first {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-right: -8px;
+  }
+
+  &.last {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: -8px;
+  }
+
+  &.disabled {
+    background-color: #B4B4B4;
+  }
+}
+
+span {
+  letter-spacing: 0.9px;
+  text-align: center;
+  color: #000000;
+}
+
+i {
+  font-size: 18px;
+}

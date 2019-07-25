@@ -1,36 +1,49 @@
-<cap-menu [value]="menu" modulo="monitor"></cap-menu>
-<cap-header username="Joaquim José Xavier"></cap-header>
+<cap-menu [value]="menu" modulo="monitor" class="cap-menu"></cap-menu>
 
-<div class="content-wrapper">
+<cap-header username="Joaquim José Xavier" logoBrasilCap="../../../assets/img/logo-brasilcap.svg"
+  logoSistema="../../../assets/img/produto.svg"> </cap-header>
 
-  <!-- <div class="content-header">
+<!-- <div class="content-wrapper"> -->
+
+<!-- <div class="content-header">
     <div class="row">
-      <div class="col-sm-6 mainTitle">
-        Processos de Cancelamento
+      <div class="col-lg-6">
+        <h1 style="font-weight: 500">frhj</h1>
       </div>
-      <div class="col-sm mainTitle title2">
-        <span *ngIf="dataBusca">{{dataBusca | date:'EEEE' | titlecase }}</span>
-        <span *ngIf="!dataBusca">{{today | date:'EEEE' | titlecase }}</span>,
-        <span *ngIf="dataBusca">{{dataBusca | date:'dd'}} de {{dataBusca | date:'MMMM' | titlecase }} de {{dataBusca |
-          date:'yyyy'}}</span>
-        <span *ngIf="!dataBusca">{{today | date:'dd'}} de {{today | date:'MMMM' | titlecase }} de {{today |
-          date:'yyyy'}}</span>
+      <div class="col-lg-6">
+        <cap-button label="Nova Pesquisa" icon="busca" class="nova-pesquisa"></cap-button>
       </div>
     </div>
   </div> -->
 
+<!-- <div class="content"> -->
 
-  <div class="content">
+<!-- <div class="row box">
+      <div class="col-lg-3">
+        <cap-inputText label="Nome" mask="99.999-999" [(ngModel)]="nome" textHelper="Nome deve possuir no mínimo 3 caracateres"
+          maxlength="20" error="true" [disabled]="disabled">
+        </cap-inputText>
+      </div>
 
-    <!-- <cap-inputText [(ngModel)]="cpf" (keydown)="changeMask($event)" [mask]="mascara"></cap-inputText> -->
+      <div class="col-lg-3">
+        <cap-button icon="busca" [disabled]="true"></cap-button>
+      </div>
+    </div>
 
-    <!-- <input id="test">
+    <div class="col-lg-3">
+        <cap-datepicker id="dataInicial" placeholder="Informe uma data" [(ngModel)]="data" textHelper="Informe uma data" mask="99/99/9999">
+        </cap-datepicker>
+      </div> -->
+
+<!-- <cap-inputText [(ngModel)]="cpf" (keydown)="changeMask($event)" [mask]="mascara"></cap-inputText> -->
+
+<!-- <input id="test">
  -->
-    <!-- <cap-scrollUp></cap-scrollUp> -->
+<!-- <cap-scrollUp></cap-scrollUp> -->
 
-    <!-- <cap-button icon="calendario"></cap-button>  -->
+<!-- <cap-button icon="calendario"></cap-button>  -->
 
-    <!-- <div class="box abas">
+<!-- <div class="box abas">
       <cap-tabPanel class="fix">
         <cap-tab title="INF.GERAIS" #listTab class="aba1">
 
@@ -53,7 +66,7 @@
       </cap-tabPanel>
     </div> -->
 
-    <!-- <div class="row">
+<!-- <div class="row">
       <div class="col-md-3">
         <cap-inputText label="Nome" icon="busca"></cap-inputText>
       </div>
@@ -62,28 +75,55 @@
       </div>
     </div> -->
 
-    <!-- <div class="col-md-10 button-container"> -->
-    <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items" fullTable="full-table">
-    </cap-grid-pagination>
+<!-- <div class="col-md-10 button-container"> -->
 
-    <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items">
-    </cap-grid-pagination>
-    <!-- </div> -->
-
-    <!-- <div class="col-md-10 button-container">
-      <cap-grid-pagination #gridPaginationComponent class="cap-card" [columns]="columns" [items]="items">
-      </cap-grid-pagination>
-    </div> -->
-
-    <!--
+<div class="content-wrapper">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-3">
+        <cap-datepicker class="button_datepicker"
+          [ngClass]="{'semBorderRadius': dataBusca !== undefined && hoje !== diaBuscado}" mode="period"
+          [(ngModel)]="periodo" required [(ngModel)]="dataBusca" (ngModelChange)="atualizarNumeroPagina($event)">
+        </cap-datepicker>
+      </div>
+      <div class="col-md-3">
+        <cap-dateRangePicker class="button_daterangepicker"
+          [ngClass]="{'semBorderRadius': dataBusca !== undefined && hoje !== diaBuscado}" name="periodo"
+          [(ngModel)]="periodo" (ngModelChange)="atualizarNumeroPagina($event)"></cap-dateRangePicker>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-12">
+          <cap-select [items]="selectSimple" label="Combo Simples" title="teste" name="testeSimples" placeholder="teste de combo simples"
+            [(ngModel)]="radioSimple"></cap-select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="col-12 col-sm-12 col-md-12">
+          <cap-select-mult [data]="cidades" label="Cidades" placeholder="Cidades" name="cidade" [(ngModel)]= "value"></cap-select-mult>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <cap-table-pagination #TablePaginationComponent [columns]="columns" [items]="items2" tableTitle="bla"
+        tableSubTitle="{{variavel}} - {{variavel}}" [rowOptions]="rowOptions">
+      </cap-table-pagination>
+    </div>
     <div class="row">
       <cap-select label="Canal" title="Canal" 
               (change)='onChange($event)'
               [(ngModel)]="idCanal" [items]=canais name="idCanal"></cap-select>
     </div>
-    -->
-
+    <div class="row">
+      <cap-button (click)="exemploExportarXLS()">Exportar XLS</cap-button>
+      <cap-button (click)="exemplo2ExportarXLS()">Exportar XLS segundo exemplo</cap-button>
+    </div>
+  </div>
 </div>
-</div>
 
-<!-- <cap-permissoes [urlSistemas]="url" [urlUsuarios]="url" sistema="monitor"></cap-permissoes> -->
+<!-- </div>
+</div> -->
+
+
+<!-- <cap-permissoes [urlSistemas]="url" [urlUsuarios]="url" sistema="posvenda"></cap-permissoes> -->

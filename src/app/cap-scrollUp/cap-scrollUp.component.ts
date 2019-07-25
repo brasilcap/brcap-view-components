@@ -5,7 +5,7 @@ import { Component, forwardRef, Input, OnInit, ElementRef, AfterViewInit, ViewCh
     templateUrl: "./cap-scrollUp.component.html",
     styleUrls: ["./cap-scrollUp.component.css"]
 })
-export class CapScrollUp implements OnInit {
+export class CapScrollUpComponent implements OnInit {
 
     pageTop = true;
 
@@ -16,7 +16,7 @@ export class CapScrollUp implements OnInit {
     }
 
     scrollEvent = (event: any): void => {
-        if (event.target.scrollTop > 1) {
+        if (event.target.scrollTop > 1 && event.target == document.body) {
             this.pageTop = false;
         } else {
             this.pageTop = true;

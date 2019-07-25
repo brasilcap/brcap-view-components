@@ -147,7 +147,7 @@ cap-btncollapse::ng-deep .btnCollapse {
 }
 
 cap-button::ng-deep .cap-button[disabled] {
-  opacity: 0.65 !important;
+  opacity: 0.38 !important;
 }
 
 .col-md-1 cap-button::ng-deep .cap-button {
@@ -210,108 +210,15 @@ cap-icon {
 
 // CARD - DASHBOARD - end
 
-// HINT
-.hint {
-
-  .round {
-    background: none;
-    color: #9e9e9e;
-    border-radius: 11px;
-    float: right;
-    width: 20px;
-    height: 20px;
-    padding-left: 3px;
-    padding-top: 1px;
-  }
-
-  .active {
-    color: rgba(0, 0, 0, 0.54);
-  }
-
-  &-container {
-    position: absolute;
-    top: -53px;
-    left: -20px;
-    background-color: #fff;
-    padding: 10px 25px;
-    min-width: max-content;
-    max-width: 500px;
-    border-radius: 5px;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14);
-
-    &:after,
-    &:before {
-      left: 22px;
-      top: 51px;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      transform: rotate(-90deg);
-      margin-top: -11px;
-    }
-
-    &:after {
-      border-right-color: #fff;
-      border-width: 13px;
-    }
-
-    &:before {
-      border-right-color: rgba(0, 0, 0, 0.23);
-      border-width: 13px;
-      margin-right: -1px;
-    }
-
-    &-inverse {
-      right: -20px;
-      left: inherit;
-    }
-
-    &-inverse:before,
-    &-inverse:after {
-      left: inherit;
-      right: 17px;
-    }
-  }
+.hint-static cap-hint::ng-deep .cap-hint{
+  margin-top: 45px;
 }
 
-.hint-absolute {
+.boxPermissao cap-hint::ng-deep .cap-hint{
   position: absolute;
   right: -20px;
-
-  .hint-container {
-    top: -7px;
-    left: 43px;
-
-    &:after,
-    &:before {
-      left: -26px;
-      top: 18px;
-      transform: none;
-    }
-  }
+  margin-top: 7px;
 }
-
-.hint-static {
-  position: static;
-  float: left;
-  margin-top: 40px;
-
-  .hint-container {
-    top: 31px;
-    left: 60px;
-
-    &:after,
-    &:before {
-      left: -26px;
-      top: 18px;
-      transform: none;
-    }
-  }
-}
-// HINT - end
 
 .btn-permitir {
   display: table;
@@ -454,7 +361,7 @@ cap-checkbox[ng-reflect-model="true"].checkbox-cinza::ng-deep label:before {
   text-align: center;
 }
 
-cap-new-pagination::ng-deep .pagination {
+cap-pagination::ng-deep .pagination {
   margin-top: 25px;
 }
 

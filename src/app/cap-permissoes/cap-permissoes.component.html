@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <form #ngForm>
-    <div class="content-header">
+    <div class="content-header content-header-medium">
       <div class="row">
         <div class="col-lg-8">
           <h1>Permissionar Usuários</h1>
@@ -14,12 +14,7 @@
       </div>
     </div>
 
-    <div class="loader" *ngIf="loading">
-      <div class="loader-body">
-        <i class="fa fa-2x fa-spinner fa-spin"></i>
-        <p>Carregando permissionamento</p>
-      </div>
-    </div>
+    <cap-loading texto="Carregando permissionamento" [loading]="loading" [sistema]="sistema"></cap-loading>
 
     <div class="content">
       <cap-scrollUp></cap-scrollUp>
@@ -42,16 +37,8 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-xl-2">
-          <div class="hint hint-static">
-            <cap-icon icon="ajuda" [size]="24" class="pointer round" [ngClass]="{'active': hintCardAtivo}" (click)="toggleHintCard()"
-              (mouseleave)="mouseLeaveHintCard()"></cap-icon>
-            <div class="hint-container" *ngIf="exibirHintCard">
-              <div class="hint-content">
-                Selecione um card para ver detalhes.
-              </div>
-            </div>
-          </div>
+        <div class="col-lg-3 col-xl-2 hint-static">
+          <cap-hint texto="Selecione um card para ver detalhes."></cap-hint>
         </div>
       </div>
 
@@ -86,9 +73,9 @@
                 </tbody>
               </table>
               <div *ngIf="emptyMessage" class="empty-message">Nenhum resultado encontrado</div>
-              <cap-new-pagination (goNext)="onNext() " (goPrev)="onPrev() " [pagesToShow]=" 1 " [page]=" page "
-                [perPage]=" limit " [count]=" total " [contagemPaginasTotal]=" contagemPaginasTotal " [primeiraLinha]=" primeiraLinha "
-                [ultimaLinha]="ultimaLinha "></cap-new-pagination>
+              <cap-pagination (goNext)="onNext()" (goPrev)="onPrev()" (goFirst)="firstPage()" (goLast)="lastPage()" [page]="page"
+                [perPage]="limit" [count]="total" [contagemPaginasTotal]="contagemPaginasTotal" [primeiraLinha]="primeiraLinha"
+                [ultimaLinha]="ultimaLinha" [numeroItens]="numeroItens"></cap-pagination>
             </div>
 
             <div class="row" *ngIf="usuarioPermissao">
@@ -110,15 +97,8 @@
                   <div class="row">
                     <div class="col-md-11">
                       <div class="boxPermissao" *ngFor="let modulo of listaModulos; let indexM = index">
-                        <div class="hint hint-absolute">
-                          <cap-icon icon="ajuda" [size]="24" class="pointer round" [ngClass]="{'active': modulo.hintAtivo}"
-                            (click)="toggleHint(modulo)" (mouseleave)="mouseLeaveHint(modulo)"></cap-icon>
-                          <div class="hint-container" *ngIf="modulo.exibirHint">
-                            <div class="hint-content">
-                              {{ modulo.descricao }}
-                            </div>
-                          </div>
-                        </div>
+
+                        <cap-hint texto="{{ modulo.descricao }}"></cap-hint>
 
                         <div [ngClass]="{'box-opened': modulo.open, 'box-closed': !modulo.open}">
                           <div class="row">

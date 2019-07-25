@@ -1,0 +1,4 @@
+<div class="cap-hint">
+  <cap-icon icon="ajuda" [size]="24" class="round" (click)="toggleHint()" (mouseleave)="mouseLeaveHint()"></cap-icon>
+  <span class="hintText {{styleClass}}" [class.showHint]="exibirHint" *ngIf="texto?.length">{{texto}}</span>
+</div>

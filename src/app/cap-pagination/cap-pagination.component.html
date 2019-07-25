@@ -1,19 +1,18 @@
-<div class="pagination">
-  <div class="numbers">
-    <button class="link first" (click)="goToPage(1)" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">
-      <i class="fa fa-angle-double-left"></i>
-    </button>
-    <button class="link prev" (click)="goToPage(page-1)" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">
-      <i class="fa fa-angle-left"></i>
-    </button>
+<div class="pagination" *ngIf="needPagination">
+  <button class="link first" (click)="onFirst()" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">
+    <cap-icon icon="anterior"></cap-icon>
+  </button>
+  <button class="link prev" (click)="onPrev()" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">
+    <cap-icon icon="anterior"></cap-icon>
+  </button>
 
-    <button *ngFor="let pageNum of getPages()" (click)="goToPage(pageNum)" [ngClass]="{'active': pageNum === page, 'disabled': loading}">{{ pageNum }}</button>
+  <span class="sm-btn-caption-brcap">{{ primeiraLinha }}-{{ ultimaLinha }} de {{ numeroItens }}</span>
 
-    <button class="link next" (click)="goToPage(page+1)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">
-      <i class="fa fa-angle-right"></i>
-    </button>
-    <button class="link last" (click)="goToPage(getLastPage())" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">
-      <i class="fa fa-angle-double-right"></i>
-    </button>
-  </div>
+  <button class="link next" (click)="onNext(true)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">
+    <cap-icon icon="seguir"></cap-icon>
+  </button>
+
+  <button class="link last" (click)="onLast(true)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">
+    <cap-icon icon="seguir"></cap-icon>
+  </button>
 </div>

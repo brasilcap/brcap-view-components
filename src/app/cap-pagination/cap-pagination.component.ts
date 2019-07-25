@@ -1,23 +1,39 @@
-import { Component, Input, EventEmitter, Output } from "@angular/core";
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output
+} from '@angular/core';
 
 @Component({
-  selector: "cap-pagination",
-  templateUrl: "./cap-pagination.component.html",
-  styleUrls: ["./cap-pagination.component.css"]
+  selector: 'cap-pagination',
+  templateUrl: './cap-pagination.component.html',
+  styleUrls: ['./cap-pagination.component.scss']
 })
 export class CapPaginationComponent {
+
   @Input() page: number;
   @Input() count: number;
+  @Input() contagemPaginasTotal: number;
+  @Input() primeiraLinha: number;
+  @Input() ultimaLinha: number
   @Input() perPage: number;
   @Input() loading: boolean;
   @Input() pagesToShow: number;
+  @Input() numeroItens: number;
 
-  @Output() paginate = new EventEmitter<number>();
+  @Output() goPrev = new EventEmitter < boolean > ();
+  @Output() goNext = new EventEmitter < boolean > ();
+  @Output() goPage = new EventEmitter < number > ();
+  @Output() goFirst = new EventEmitter < boolean > ();
+  @Output() goLast = new EventEmitter < boolean > ();
+
+  needPagination = true;
 
   constructor() {}
 
   getMin(): number {
-    return this.perPage * this.page - this.perPage + 1;
+    return ((this.perPage * this.page) - this.perPage) + 1;
   }
 
   getMax(): number {
@@ -28,24 +44,36 @@ export class CapPaginationComponent {
     return max;
   }
 
-  goToPage(n: number): void {
-    this.paginate.emit(n);
+  onPage(n: number): void {
+    this.goPage.emit(n);
+  }
+
+  onPrev(): void {
+    this.goPrev.emit(true);
+  }
+
+  onNext(next: boolean): void {
+    this.goNext.emit(next);
+  }
+
+  onFirst(): void {
+    this.goFirst.emit(true);
+  }
+
+  onLast(): void {
+    this.goLast.emit(true);
   }
 
   totalPages(): number {
-    return Math.ceil(this.count / this.perPage) || 0;
-  }
-
-  getLastPage() {
-    return Math.ceil(this.count / this.perPage) || 0;
+    return Math.ceil(this.contagemPaginasTotal / this.perPage) || 0;
   }
 
   lastPage(): boolean {
-    return this.perPage * this.page > this.count;
+    return this.page >= this.contagemPaginasTotal;
   }
 
   getPages(): number[] {
-    const c = Math.ceil(this.count / this.perPage);
+    const c = Math.ceil(this.contagemPaginasTotal / this.perPage);
     const p = this.page || 1;
     const pagesToShow = this.pagesToShow || 9;
     const pages: number[] = [];

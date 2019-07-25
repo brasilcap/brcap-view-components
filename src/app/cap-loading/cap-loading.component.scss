@@ -1,0 +1,86 @@
+.loader,
+.loader-initial {
+  position: fixed;
+  z-index: 100;
+}
+
+.loader {
+  background: #f1f1f1;
+  top: 150px;
+  left: 230px;
+  width: calc(100% - 230px);
+  height: calc(100% - 150px);
+
+  &-large {
+    top: 220px;
+    height: calc(100% - 220px);
+  }
+
+  .loader-body {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -72px;
+  }
+}
+
+.loader-initial {
+  background: white;
+  width: 100%;
+  height: 100%;
+
+  .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.large {
+  top: 220px;
+  height: calc(100% - 220px);
+}
+
+
+.produtos,
+.posvenda,
+.malthus,
+.monitor,
+.financeiro,
+.contabilidade,
+.atendimento {
+  width: 100px;
+  height:100px;
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+}
+
+.produtos {
+  background-image: url(../../assets/img/loading-produto.svg);
+}
+
+.posvenda {
+  background-image: url(../../assets/img/loading-posvenda.svg);
+}
+
+.malthus {
+  background-image: url(../../assets/img/loading-malthus.svg);
+}
+
+.monitor {
+  background-image: url(../../assets/img/loading-monitor.svg);
+}
+
+.financeiro {
+  background-image: url(../../assets/img/loading-financeiro.svg);
+}
+
+.contabilidade {
+  background-image: url(../../assets/img/loading-contabilidade.svg);
+}
+
+.atendimento {
+  background-image: url(../../assets/img/loading-atendimento.svg);
+}

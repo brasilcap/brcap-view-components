@@ -27,12 +27,8 @@ export class PermissoesComponent implements OnInit {
   usuarioPermissao;
   usuarioVisualizar;
   permissao;
-  exibirHint = false;
-  hintAtivo = false;
   cardPermissionados = false;
   cardNaoPermissionados = false;
-  hintCardAtivo = false;
-  exibirHintCard = false;
   modalActive = false;
   modalWarningActive = false;
   filtro;
@@ -58,6 +54,7 @@ export class PermissoesComponent implements OnInit {
   primeiraLinha: number;
   ultimaLinha: number;
   usuariosTabela: any[];
+  numeroItens: number;
 
   constructor(private http: Http, private plataformaService: PlataformaService, private usuarioService: UsuarioService) { }
 
@@ -104,7 +101,9 @@ export class PermissoesComponent implements OnInit {
 
       this.usuariosPermissionados.forEach(element => {
         delete element.plataforma;
-        element.cpfMascarado = element.cpf.substring(0, 3).concat(".").concat(element.cpf.substring(3, 6)).concat(".").concat(element.cpf.substring(6, 9)).concat("-").concat(element.cpf.substring(9, 11));
+        if(element !== undefined){
+          element.cpfMascarado = element.cpf.substring(0, 3).concat(".").concat(element.cpf.substring(3, 6)).concat(".").concat(element.cpf.substring(6, 9)).concat("-").concat(element.cpf.substring(9, 11));
+        }
 
         if ((<any>Object).values(element).find((item) => item.toString().toUpperCase().indexOf(this.filtro.toUpperCase()) >= 0)) {
           this.listaFiltrado.push(element);
@@ -113,8 +112,9 @@ export class PermissoesComponent implements OnInit {
 
       this.usuariosNaoPermissionados.forEach(element => {
         delete element.plataforma;
+        if(element !== undefined){
         element.cpfMascarado = element.cpf.substring(0, 3).concat(".").concat(element.cpf.substring(3, 6)).concat(".").concat(element.cpf.substring(6, 9)).concat("-").concat(element.cpf.substring(9, 11));
-
+        }
         if ((<any>Object).values(element).find((item) => item.toString().toUpperCase().indexOf(this.filtro.toUpperCase()) >= 0)) {
           this.listaFiltrado.push(element);
         }
@@ -148,6 +148,7 @@ export class PermissoesComponent implements OnInit {
         : this.usuariosTabela.length;
     this.primeiraLinha = primeiraLinha + 1;
     this.ultimaLinha = primeiraLinha + this.usuariosTabela.length;
+    this.numeroItens = this.listaFiltrado.length;
   }
 
   onNext(): void {
@@ -157,6 +158,16 @@ export class PermissoesComponent implements OnInit {
 
   onPrev(): void {
     this.page--;
+    this.montarPaginacao();
+  }
+
+  firstPage(){
+    this.page = 1;
+    this.montarPaginacao();
+  }
+
+  lastPage() {
+    this.page = this.contagemPaginasTotal;
     this.montarPaginacao();
   }
 
@@ -187,16 +198,6 @@ export class PermissoesComponent implements OnInit {
     location.reload();
   }
 
-  toggleHint(modulo) {
-    modulo.exibirHint = !modulo.exibirHint;
-    modulo.hintAtivo = !modulo.hintAtivo;
-  }
-
-  mouseLeaveHint(modulo) {
-    modulo.exibirHint = false;
-    modulo.hintAtivo = false;
-  }
-
   abrirCardPermissionados() {
     this.cardPermissionados = !this.cardPermissionados;
     this.cardNaoPermissionados = false;
@@ -209,16 +210,6 @@ export class PermissoesComponent implements OnInit {
     this.cardPermissionados = false;
     this.page = 1;
     this.montarPaginacao();
-  }
-
-  mouseLeaveHintCard() {
-    this.exibirHintCard = false;
-    this.hintCardAtivo = false;
-  }
-
-  toggleHintCard() {
-    this.exibirHintCard = !this.exibirHintCard;
-    this.hintCardAtivo = !this.hintCardAtivo;
   }
 
   toggleModal() {
@@ -269,10 +260,11 @@ export class PermissoesComponent implements OnInit {
     this.checkEmpty();
   }
 
-
   capitalize(string) {
-    var usuarioNome = string.toLowerCase();
-    return usuarioNome;
+    if(string !== undefined){
+      var usuarioNome = string.toLowerCase();
+      return usuarioNome;
+    }
   }
 
   selecionarUsuarioVisualizar(usuario) {

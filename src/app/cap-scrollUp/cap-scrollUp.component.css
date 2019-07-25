@@ -1,26 +1,31 @@
 cap-button.scroll::ng-deep .cap-button {
-    opacity: 0;
-    position: fixed;
-    top: inherit !important;
-    bottom: 20px;
-    right: 30px;
-    width: 38px;
-    height: 38px;
-    padding: 0px 14px;
-    border-radius: 8px;
-    -webkit-box-shadow: 2px 2px 5px 0px #757575;
-    -moz-box-shadow: 2px 2px 5px 0px #757575;
-    box-shadow: 2px 2px 5px 0px #757575;
-    z-index: 100;
-  }
-  
-  cap-button.show::ng-deep .cap-button {
-    opacity: 1 !important;
-    transition: .3s ease-in-out all;
-  }
-  
-  cap-button.scroll::ng-deep .brcap-ico {
-    transform: rotate(180deg);
-    left: -8px !important;
-    font-size: 24px !important;
-  }
+  opacity: 0;
+  position: fixed;
+  top: inherit !important;
+  bottom: 20px;
+  right: 30px;
+  width: 38px;
+  height: 38px;
+  padding: 0px 14px;
+  border-radius: 8px;
+  -webkit-box-shadow: 2px 2px 5px 0px #757575;
+  -moz-box-shadow: 2px 2px 5px 0px #757575;
+  box-shadow: 2px 2px 5px 0px #757575;
+  z-index: 100;
+}
+
+cap-button.show::ng-deep .cap-button {
+  opacity: 1 !important;
+  transition: .3s ease-in-out all;
+}
+
+cap-button.scroll::ng-deep .brcap-ico {
+  transform: rotate(180deg);
+  left: -8px !important;
+  font-size: 24px !important;
+}
+
+.anchor{
+  position: absolute;
+  top: 0;
+}

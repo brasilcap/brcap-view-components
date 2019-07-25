@@ -61,3 +61,16 @@
 .switch-input:checked + .switch-label .toggle--off {
   display: none;
 }
+
+/* disabled */
+.switch-label.disabled:before {
+  background: rgba(117,117,117,0.14) !important;
+}
+
+cap-toggle[ng-reflect-model="false"] .switch-label:after, cap-toggle[ng-reflect-model="ativo"] .switch-label:after{
+  background: white;
+}
+
+cap-toggle[ng-reflect-model="true"] label.disabled.switch-label:after{
+  background: rgba(117,117,117,0.6) !important;
+}

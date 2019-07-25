@@ -26,12 +26,6 @@ label.sm {
   padding: 6px 40px;
 }
 
-label.disabled {
-  opacity: 0.4;
-}
-
-
-
 label:first-of-type {
   transform: translateX(-40px);
 }
@@ -55,4 +49,8 @@ input:checked + label::before {
 
 .cap-chips-container {
   width: fit-content;
+}
+
+label.disabled{
+  border-color: rgba(0,0,0,0.1) !important;
 }

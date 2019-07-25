@@ -1,3 +1,9 @@
+.menuFixo {
+  position: fixed;
+  top: 0px;
+  background-color: #ccf;
+}
+
 .menu-item {
   padding: 10px;
   cursor: pointer;
@@ -39,21 +45,46 @@ ul.list li {
 }
 
 ul.list li:hover {
-  border-top: 2px solid rgba(255, 204, 0, 0.2);
+  border-top: 2px solid rgba(255, 204, 0, 0);
   border-bottom: 2px solid rgba(255, 204, 0, 0.5);
   background-color: rgba(255, 204, 0, 0.005);
   /* #ffcc00;  //Monitor */
 }
 
-/* .ativado {
-  border-right: 6px solid rgba(255, 255, 255, 0.5);
-} */
+.fechado {
+  max-height: 0px;
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
+  /* position: relative;
+  cursor: pointer; */
+  /* display: inline-block; */
+  /* overflow: hidden; */
+  /* -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1; */
+  will-change: opacity, transform;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.abrir {
+  max-height: 900px;
+  transition: max-height 1s ease-in-out;
+}
 
 .hide {
   display: none;
 }
 
 .label-menu {
+  border-top: 2px solid rgba(0, 0, 0, 0);
   color: rgba(255, 255, 255, 0.8);
   text-transform: capitalize;
   font-size: 14px;
@@ -97,12 +128,16 @@ ul.list li:hover {
 
 .ativado:after {
   top: -2px;
-  width: 6px;
+  width: 8px;
   content: "";
   background-color: #ffe800;
   position: absolute;
   right: 0;
   bottom: -2px;
+}
+
+.h7{
+  font-size: 9px;
 }
 
 /* .rotate::ng-deep .brcap-ico{

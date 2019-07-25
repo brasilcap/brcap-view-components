@@ -1,0 +1,140 @@
+button {
+  position: relative;
+  overflow: hidden;
+
+  &:hover:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 1;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.16);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  &.cap-button {
+    border: none;
+    text-transform: uppercase;
+    padding: 0px 25px;
+    border-radius: 5px;
+    height: 50px;
+    font-size: 14px;
+    font-family: Ubuntu;
+    color: #fff;
+    letter-spacing: 1.2px;
+    box-shadow: 0 0.5px 2.5px 0 rgba(0, 0, 0, 0.2), 0 1.5px 0.5px -1px rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+
+    &[disabled] {
+      opacity: 0.38;
+
+      &:hover:after {
+        opacity: 0;
+      }
+    }
+
+    &:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    i {
+      position: relative;
+      left: -5px;
+      font-weight: 500;
+      float: left;
+      top: 3px;
+      padding-right: 7px;
+    }
+
+    //styleClass
+    &.xs {
+      height: 24px;
+      padding: 0px 15px;
+      font-size: 10px;
+      letter-spacing: 0px;
+    }
+
+    &.sm {
+      height: 38px;
+      padding: 0px 25px;
+      letter-spacing: 0.2px;
+    }
+
+    &.outline {
+      background-color: rgba(98, 2, 238, 0);
+      border: solid 1px rgba(0, 0, 0, 0.12);
+      box-shadow: none;
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    &.white {
+      background-color: #fafafa;
+      color: rgba(0, 0, 0, 0.87);
+      box-shadow: 0 0.5px 2.5px 0 rgba(0, 0, 0, 0.2), 0 1.5px 0.5px -1px rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+
+      i:hover {
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      &:hover,
+      &:active {
+        color: rgba(0, 0, 0, 0.54);
+      }
+
+      &:hover {
+        background-color: #f7f7f7;
+      }
+
+      &:active {
+        background-color: #f2f2f2;
+      }
+    }
+
+    &.btn-ico {
+      padding: 0px 20px;
+    }
+
+    &.sm.btn-ico {
+      padding: 0px 10px;
+    }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}

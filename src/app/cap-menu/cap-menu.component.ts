@@ -18,30 +18,26 @@ export class CapMenuComponent implements OnInit {
   divMenu: ElementRef;
 
   blocSelecionado;
+  exibir;
   itemSelecionado;
 
   constructor() {}
 
   ngOnInit() {
+
     if (this.width) {
       this.divMenu.nativeElement.style.width = this.width + "px";
     } else {
-      this.divMenu.nativeElement.style.width = "230px";
+      this.divMenu.nativeElement.style.width = "230px";  //
     }
+    this.exibir = false;
   }
 
   public selecionarItem(item) {
-
     let blocDividido = item.split('#',2);
     this.blocSelecionado = blocDividido[1];
-    console.log("blocSelecionado1 = "+this.blocSelecionado);
-
     this.itemSelecionado = item;
+
   }
 
-  // selecionarToggle(blocSelecionado){
-
-  //    this.blocSelecionado = blocSelecionado;
-
-  // }
 }

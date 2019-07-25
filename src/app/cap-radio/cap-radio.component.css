@@ -94,6 +94,7 @@
 .pure-checkbox input[type="radio"]:disabled:hover + label:before,
 .cap-radiobutton input[type="radio"]:disabled:hover + label:before {
   background-color: inherit;
+  cursor: default;
 }
 
 .pure-checkbox input[type="checkbox"]:disabled:checked + label:before,
@@ -101,6 +102,7 @@
 .pure-checkbox input[type="radio"]:disabled:checked + label:before,
 .cap-radiobutton input[type="radio"]:disabled:checked + label:before {
   background-color: #cccccc;
+  cursor: default;
 }
 
 .pure-checkbox input[type="checkbox"] + label:after,
@@ -157,6 +159,10 @@ label.cap-radiobutton {
   font-size: 13px;
   font-weight: 500;
   font-family: Ubuntu;
+}
+
+label.error{
+  color: rgba(0,0,0,0.87) !important;
 }
 
 @keyframes borderscale {

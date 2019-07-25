@@ -23,3 +23,7 @@
   left: -3px;
   position: relative;
 }
+
+.btnCollapse:disabled:after{
+  color: #ddd;
+}

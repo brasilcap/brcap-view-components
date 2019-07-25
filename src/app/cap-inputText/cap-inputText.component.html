@@ -15,4 +15,4 @@
 <p class="helper-text error" [class.disabled]="disabled" *ngIf="hasError() && modelInput?.errors?.required">Campo Obrigatório</p>
 <p class="helper-text error" [class.disabled]="disabled" *ngIf="hasError() && !modelInput?.errors?.required">{{erroMessage}}</p>
 
-<p *ngIf="textHelper?.length" class="helper-text" [class.disabled]="disabled">{{textHelper}}</p>
+<p *ngIf="textHelper?.length" class="helper-text {{styleClass}}" [class.disabled]="disabled">{{textHelper}}</p>

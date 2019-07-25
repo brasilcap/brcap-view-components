@@ -1,4 +1,4 @@
-<label [for]="id" class="label-input {{textError}}" [class.disabled]="disabled" *ngIf="label?.length">
+<label [for]="id" class="label-input {{textError}} {{styleClass}}" [class.disabled]="disabled" *ngIf="label?.length">
   {{label}}</label>
 
 
@@ -8,4 +8,4 @@
   [placeholder]="placeholder?.length ? placeholder : ''">
   </textarea>
 <i class="fa fa-exclamation-circle ico-error" [class.disabled]="disabled" *ngIf="textError"></i>
-<p *ngIf="textHelper?.length" class="helper-text" [class.disabled]="disabled">{{textHelper}}</p>
+<p *ngIf="textHelper?.length" class="helper-text {{styleClass}}" [class.disabled]="disabled">{{textHelper}}</p>

@@ -5,7 +5,7 @@ const $: JQueryStatic = (<any>jqueryProxy).default || jqueryProxy;
 @Component({
   selector: "cap-button",
   templateUrl: "./cap-button.component.html",
-  styleUrls: ["./cap-button.component.css"]
+  styleUrls: ["./cap-button.component.scss"]
 })
 export class CapButtonComponent implements OnInit {
   @Input("id") id: string;

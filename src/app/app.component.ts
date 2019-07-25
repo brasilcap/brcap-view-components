@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
-import { CapGridPaginationComponent } from "./cap-grid-pagination/cap-grid-pagination.component";
+import { CapTablePaginationComponent } from "./cap-table-pagination/cap-table-pagination.component";
+import { ExportXLSService } from "./services/export-xls.service";
 
 @Component({
   selector: "app-root",
@@ -8,15 +9,16 @@ import { CapGridPaginationComponent } from "./cap-grid-pagination/cap-grid-pagin
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  constructor() {
+  constructor(private exportXlsService: ExportXLSService) {}
 
-  }
   private brcapUtil;
   funcionalidades = [];
   canais = [];
   colors = {};
   collapse = false;
-
+  radio:any;
+  radioSimple: any;
+  selectSimple = [];
   mes;
   item = false;
   radios = [];
@@ -35,6 +37,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   off = false;
   on = true;
   mascara;
+  loading = true;
+  disabled = true;
+  cidades: Array<any> = [];
+  selectedItems: Array<any> = [];
+  dropdownSettings = {};
 
   menu = [
     {
@@ -313,23 +320,131 @@ export class AppComponent implements OnInit, AfterViewInit {
   itemId;
   url = "https://dhfnhabwnl.execute-api.sa-east-1.amazonaws.com/dev/";
 
-  // CAP-GRID-PAGINAION
-  @ViewChild(CapGridPaginationComponent)
-  gridPagination: CapGridPaginationComponent;
+  // CAP-TABLE-PAGINAION
+  @ViewChild(CapTablePaginationComponent)
+  tablePagination: CapTablePaginationComponent;
   columns = ["ID", "NOME"];
   items = [[1, "JOÃO"], [2, "MARIA"], [3, "JOSÉ"], [4, "Anna"], [5, "Miguel"], [6, "Gabriel"], [7, "Raphael"], [8, "Pedro"], [9, "Paulo"], [10, "Joaquim"],
   [11, "JOÃO2"], [12, "MARIA2"], [13, "JOSÉ2"], [14, "Anna2"], [15, "Miguel2"], [16, "Gabriel2"], [17, "Raphael2"], [18, "Pedro2"], [19, "Paulo2"], [20, "Joaquim2"],
   [21, "JOÃO"], [22, "MARIA"], [23, "JOSÉ"], [24, "Anna"], [25, "Miguel"], [26, "Gabriel"], [27, "Raphael"], [28, "Pedro"]
   ];
+  items2 = [[1, "JOÃO"], [2, "MARIA"], [3, "JOSÉ"], [4, "Anna"], [5, "Miguel"], [6, "Gabriel"], [7, "Raphael"], [8, "Pedro"], [9, "Paulo"], [10, "Joaquim"], [11, "olar"]
+  ];
+
   rowOptions = ["Visualizar", "Editar", "Excluir"];
 
+  listaPilotos = [
+    {
+      nome: 'Rogerinho do Ingá',
+      veiculo: 'Sprinter Azul e Vermelha',
+      signo: 'Capricórnio',
+      altura: 1.7
+    },
+    {
+      nome: 'Maurílio dos Anjos',
+      veiculo: 'Kombi Branca 84',
+      signo: 'Câncer',
+      altura: 1.72
+    },
+    {
+      nome: 'Julinho da Van',
+      veiculo: 'Sprinter Branca',
+      signo: 'Touro',
+      altura: 1.8
+    },
+    {
+      nome: 'Renan',
+      veiculo: 'Towner Azul Bebê',
+      signo: 'Áries',
+      altura: 1.7
+    },
+  ];
+
+  listaPilotos2 = [
+    {
+      nome: 'Rogerinho do Ingá',
+      veiculo: 'Sprinter Azul e Vermelha',
+      signo: 'Capricórnio',
+      penduras: [
+        { desc: 'cerveja fiado', valor: 23.50 },
+        { desc: 'cerveja fiado', valor: 50.23 },
+      ]
+    },
+    {
+      nome: 'Maurílio dos Anjos',
+      veiculo: 'Kombi Branca 84',
+      signo: 'Câncer',
+      penduras: [
+        { desc: 'cerveja fiado', valor: 23.50 },
+        { desc: 'cerveja fiado', valor: 50.23 },
+      ]
+    },
+    {
+      nome: 'Julinho da Van',
+      veiculo: 'Sprinter Branca',
+      signo: 'Touro',
+      penduras: [
+        { desc: 'cerveja fiado', valor: 23.50 },
+        { desc: 'cerveja fiado', valor: 50.23 },
+      ]
+    },
+    {
+      nome: 'Renan',
+      veiculo: 'Towner Azul Bebê',
+      signo: 'Áries',
+      penduras: [
+        { desc: 'cerveja fiado', valor: 23.50 },
+        { desc: 'cerveja fiado', valor: 50.23 },
+      ]
+    },
+  ];
+
+  metadadosPilotos = [
+    {
+      chave: 'nome',
+      nome: 'Nome do Piloto'
+    },
+    {
+      chave: 'veiculo',
+      nome: 'Dirige:'
+    },
+    {
+      chave: 'signo',
+      nome: 'Signo do Zodíaco'
+    },
+    {
+      chave: 'altura',
+      nome: 'Altura',
+      formato: '#,##0.00"m"'
+    },
+  ];
+
+  metadadosPendura = {
+    chave: 'penduras',
+    detalhes: [
+      {
+        tamanho: 2,
+        chave: 'desc',
+        nome: 'Penduras'
+      },
+      {
+        tamanho: 1,
+        chave: 'valor',
+        nome: 'Valor'
+      },
+    ]
+  };
+
+  variavel = "dfvfdfghgfhfggfhhfg"
+
+  listaTipoPessoa = "dd"
+
   ngAfterViewInit() {
-    if (this.gridPagination) {
+    if (this.tablePagination) {
       setTimeout(_ => {
-        this.gridPagination.setPage(true);
+        this.tablePagination.setPage(true);
       }, 0);
     }
-
   }
 
   // cpf;
@@ -368,11 +483,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.radios = [
       {
-        label: "Opção 1",
+        label: "Selecione opcao 1",
         value: 1
       },
       {
-        label: "Opção 2",
+        label: "Selecione opcao 2",
         value: 2
       },
       {
@@ -380,6 +495,22 @@ export class AppComponent implements OnInit, AfterViewInit {
         value: 3
       }
     ];
+
+    this.selectSimple = [
+      {
+        label: "opcao 1",
+        value: 1
+      },
+      {
+        label: "opcao 2",
+        value: 2
+      },
+      {
+        label: "Opção 3",
+        value: 3
+      }
+    ];
+
     this.funcionalidades = [
       {
         modulo: "Usuarios",
@@ -429,7 +560,26 @@ export class AppComponent implements OnInit, AfterViewInit {
           }
         ]
       }
+    ]
+
+    this.cidades = [
+      { value: 1, label: 'New Delhi' },
+      { value: 2, label: 'Mumbai' },
+      { value: 3, label: 'Bangalore' },
+      { value: 4, label: 'Pune' },
+      { value: 5, label: 'Chennai' },
+      { value: 6, label: 'Navsari' }
     ];
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'value',
+      textField: 'label',
+      selectAllText: 'Selecionar todos',
+      unSelectAllText: 'limpar seleção',
+      allowSearchFilter: false,
+      itemsShowLimit: 3
+    };
   }
 
   event(event) {
@@ -454,12 +604,33 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.erroMsg = "Campo Obrigatório";
     return true;
   }
-
   onChange(value) {
     console.log("Value change!! ",value);
+  }
+  async exemploExportarXLS() {
+    return this.exportXlsService.gerarXls({
+      linhas: this.listaPilotos,
+      metadadosTabela: this.metadadosPilotos,
+      nomeArquivo: 'exemploPilotos',
+      titulo: 'Pilotos'
+    });
+  }
+
+  async exemplo2ExportarXLS() {
+    return this.exportXlsService.gerarXls({
+      linhas: this.listaPilotos2,
+      metadadosTabela: this.metadadosPilotos,
+      metadadosDetalhe: this.metadadosPendura,
+      nomeArquivo: 'exemplo2Pilotos',
+      titulo: 'Pilotos'
+    });
   }
 
   login(event) {
     alert("LOGOU!");
+  }
+
+  selFormaOnChange(item: any){
+    console.log('item', item);
   }
 }

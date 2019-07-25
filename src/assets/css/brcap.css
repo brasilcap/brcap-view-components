@@ -1,5 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Ubuntu:300,400,700";
-@import "https://fonts.googleapis.com/css?family=Roboto:300,400,700";
+@import "https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700";
 
 /** GERAL **/
 * {
@@ -35,7 +34,6 @@ html {
   -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   margin-left: 230px;
-  z-index: 820;
 }
 
 body.minimizado .content-wrapper {
@@ -49,7 +47,6 @@ body.minimizado .content-wrapper {
 
 .content {
   min-height: 250px;
-  /* padding: 25px; */
   margin-right: auto;
   margin-left: auto;
   padding-top: 5px;
@@ -59,27 +56,54 @@ body.minimizado .content-wrapper {
 
 .content-header {
   position: relative;
-  padding: 10px 20px 10px 20px;
-  height: auto;
+  padding: 25px;
   top: -20px;
+}
+
+.content-header label.label-input {
+  background: transparent;
+}
+
+.content-header-small {
+  height: 75px !important;
+}
+
+.content-header-medium {
+  height: 80px !important;
+}
+
+.content-header label.label-input {
+  background: transparent;
+  top: 22px !important;
+  left: 9px !important;
+}
+
+.content-header-large {
+  height: 150px !important;
+}
+
+.content-header-abas,
+.content-header-cards {
+  height: 130px !important;
 }
 
 .content-header h1,
 .content-header h2,
-.content-header h3,
-.content-header h4,
-.content-header h5,
-.content-header h6 {
-  margin: 10px 0px;
+.content-header h3 {
+  margin: 0;
 }
 
 .box {
   position: relative;
   border-radius: 5px;
   background: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14);
-  padding: 15px 15px 15px 15px;
+  padding: 25px;
+}
+
+.specialBoxPadding {
+  padding: 15px;
 }
 
 .navbar {
@@ -90,31 +114,27 @@ body.minimizado .content-wrapper {
 }
 
 h1 {
-  font-family: "Ubuntu";
-  font-size: 28px;
+  font-size: 24px;
   letter-spacing: 0.2px;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.5);
 }
 
 h2 {
-  font-family: Ubuntu;
-  font-size: 24px;
-  font-weight: normal;
-  letter-spacing: 0.2px;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-h3 {
-  font-family: Ubuntu;
   font-size: 20px;
   font-weight: normal;
   letter-spacing: 0.2px;
   color: rgba(0, 0, 0, 0.87);
 }
 
+h3 {
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.2px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
 .subtitle-1-brcap {
-  font-family: Ubuntu;
   font-size: 16px;
   line-height: 1.48;
   letter-spacing: 0.2px;
@@ -122,7 +142,6 @@ h3 {
 }
 
 .subtitle-2-brcap {
-  font-family: Ubuntu;
   font-size: 16px;
   line-height: 1.48;
   letter-spacing: 0.2px;
@@ -130,13 +149,11 @@ h3 {
 }
 
 .caption-brcap {
-  font-family: Ubuntu;
   font-size: 12px;
   letter-spacing: 0.2px;
 }
 
 .sm-btn-caption-brcap {
-  font-family: Ubuntu;
   font-size: 10px;
   line-height: 1.6;
   letter-spacing: 0.2px;
@@ -144,7 +161,6 @@ h3 {
 }
 
 .chips-caption-brcap {
-  font-family: Ubuntu;
   font-size: 9px;
   letter-spacing: 0.2px;
   text-transform: uppercase;
@@ -278,20 +294,6 @@ label.label-input {
   height: 4px;
 }
 
-label.error,
-.helper-text.error {
-  color: #b00020;
-}
-
-.cap-inputText.error {
-  border-color: #b00020;
-  border-width: 2px;
-}
-
-.content-header .cap-inputText.error {
-  border: 1.5px solid #b00020;
-}
-
 .helper-text {
   font-size: 11px;
   font-family: Ubuntu;
@@ -302,15 +304,6 @@ label.error,
   position: relative;
   top: 0px;
   left: 0px;
-}
-
-.ico-error {
-  float: right;
-  position: relative;
-  top: -35px;
-  right: 14px;
-  font-size: 20px;
-  color: #b00020;
 }
 
 ::placeholder {
@@ -349,8 +342,13 @@ input:disabled:-ms-input-placeholder {
   padding-top: 20px;
 }
 
+.content .cap-inputText:disabled {
+  cursor: default !important;
+  border: 1px solid rgba(117, 117, 117, 0.38) !important;
+}
+
 .content-header input[ng-reflect-is-disabled="true"].cap-inputText {
-  border-bottom: 1px solid rgba(117, 117, 117, 0.65) !important;
+  border-bottom: 1px solid rgba(117, 117, 117, 0.38) !important;
 }
 
 .content-header .bootstrap-select.btn-group .dropdown-toggle .filter-option {
@@ -361,12 +359,6 @@ input:disabled:-ms-input-placeholder {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.87);
   border-radius: 0px;
-}
-
-.content-header label.label-input {
-  background: transparent;
-  top: 22px !important;
-  left: 9px !important;
 }
 
 .icon-calendar {
@@ -392,10 +384,6 @@ input:disabled:-ms-input-placeholder {
   color: #888;
 }
 
-.cap-inputText.error {
-  border: 1.5px solid #b00020;
-}
-
 .cap-inputText:focus {
   box-shadow: none;
   border-color: none;
@@ -419,23 +407,6 @@ p.label-text span {
   display: inline;
   position: relative;
   top: 1px;
-}
-
-label.disabled {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.helper-text.disabled {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.ico-error {
-  float: right;
-  position: relative;
-  top: -35px;
-  right: 14px;
-  font-size: 20px;
-  color: #b00020;
 }
 
 /* !
@@ -611,6 +582,19 @@ label.disabled {
   content: "\e917";
 }
 
+/* .primeira-pagina{
+  content: "\";
+}
+.ultima-pagina{
+  content: "\";
+}
+.permissionar{
+  content: "\";
+}
+.pesquisa-avancada{
+  content: "\";
+} */
+
 .cap-button .brcap-ico {
   position: relative;
   left: -10px;
@@ -743,7 +727,7 @@ select-dropdown>div .filter input {
 ng-select>div>div.single>div.clear,
 ng-select>div>div.single>div.toggle {
   line-height: 50px !important;
-  color: #000 !important;
+  color: #757575 !important;
   overflow: hidden;
 }
 
@@ -797,6 +781,14 @@ select-dropdown>div .options ul li {
 
 .mydrp .selectiondisabled {
   background: transparent !important;
+}
+
+.mydrp .selectiondisabled,
+.mydp .selectiondisabled,
+.mydrp .btnpickerdisabled,
+.mydp .btnpickerdisabled,
+.form-control[disabled] {
+  cursor: default !important;
 }
 
 .selbtngroup .mydpicon {
@@ -1078,7 +1070,7 @@ ng-select>div>div.single>div.toggle {
 }
 
 ng-select>div.disabled>div.single>div.toggle {
-  color: #ddd !important;
+  color: rgba(117,117,117,0.38) !important;
 }
 
 ng-select>div>div.single>div.toggle:before {
@@ -1382,4 +1374,157 @@ cap-modal.sm .modal-dialog {
 
 cap-modal.lg .modal-dialog {
   width: 750px;
+}
+
+/* disabled */
+.helper-text.disabled,
+label.disabled {
+  color: rgba(0, 0, 0, 0.38) !important;
+  cursor: default !important;
+}
+
+ng-select .disabled {
+  background: white !important;
+  border: 1px solid rgba(117, 117, 117, 0.38) !important;
+}
+
+ng-select .disabled .placeholder {
+  color: rgba(0, 0, 0, 0.38) !important;
+}
+
+input[disabled] {
+  text-transform: none !important;
+}
+
+/* error */
+.below.error .toggle,
+.error,
+.ico-error,
+cap-icon.error .ver-senha-password,
+my-date-range-picker.error .mydrp .selectiongroup .btnpicker,
+my-date-picker.error .mydp .selectiongroup .btnpicker{
+  color: #b00020 !important;
+}
+
+.ico-error {
+  float: right;
+  position: relative;
+  top: -35px;
+  right: 14px;
+  font-size: 20px;
+}
+
+.below.error,
+dp-date-picker.error .dp-input-container .dp-picker-input,
+.cap-inputText.error,
+.cap-inputTextArea.error,
+/* my-date-picker.error .mydp .selectiongroup, */
+.cap-radiobutton.error:before,
+my-date-range-picker.error .mydrp .selectiongroup {
+  border: 2px solid #b00020 !important;
+}
+
+/* classes gerais */
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.no-padding {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* loader index.html */
+.loader-initial {
+  position: fixed;
+  z-index: 100;
+  background: white;
+  width: 100%;
+  height: 100%;
+}
+
+.loader-initial .fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/* botão nova pesquisa */
+.nova-pesquisa .cap-button {
+  width: 195px !important;
+  height: 36px !important;
+  margin-top: -3px !important;
+  float: right;
+  padding: 0px 20px !important;
+}
+
+.nova-pesquisa .cap-button .busca {
+  font-size: 20px !important;
+}
+
+
+/* style cap-select-multi */
+/* TODO */
+
+.multiSelect {
+  text-transform: none !important;
+  box-shadow: 0px 2px 0px 0px #555 !important;
+  margin: 0px 0px 0px 0px !important;
+  padding: 0px 0px 0px 0px !important;
+  margin-top: 0px !important;
+  height: 49px !important;
+  background-color: rgba(107,191,94,0.5) !important;
+  border-radius: 5px 5px 0px 0px !important;
+}
+
+.multiSelect .btn {
+  text-transform: none !important;
+  padding: 8px 0px 0px 11px !important;
+  margin: 12px 0px 12px 0px!important;
+  border-color: transparent !important;
+}
+
+.multiSelect .btn:focus, .btn:active:focus,
+.btn.active:focus, .btn.focus, .btn:active.focus,
+.btn.active.focus {
+  outline: none !important;
+  outline-offset: none !important;
+  box-shadow: none !important;
+}
+
+.multiselect-dropdown .btn .selected-item {
+  margin-right: 4px !important;
+    background: rgba(107,191,94,0.5) !important;
+    color: #333 !important;
+    border-radius: 2px !important;
+    float: left !important;
+    border-color: transparent !important;
 }

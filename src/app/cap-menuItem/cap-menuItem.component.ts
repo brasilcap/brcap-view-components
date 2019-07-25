@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter, OnChanges } from "@angular/core";
 import { ValueTransformer } from "@angular/compiler/src/util";
 
 @Component({
@@ -6,7 +6,7 @@ import { ValueTransformer } from "@angular/compiler/src/util";
   templateUrl: "./cap-menuItem.component.html",
   styleUrls: ["./cap-menuItem.component.css"]
 })
-export class CapMenuItemComponent {
+export class CapMenuItemComponent implements OnChanges {
   @Input("id")
   id: string;
   @Input("value")
@@ -25,20 +25,17 @@ export class CapMenuItemComponent {
 
   @Input("blocSelecionado")
   blocSelecionado
+  @Input("exibir")
+  exibir
   @Input("itemSelecionado")
   itemSelecionado
 
   @Output()
   selecionar = new EventEmitter();
-
-  @Output()
-  selecionarToggle = new EventEmitter();
-
-  
+  selecionar2 = new EventEmitter();
 
   codigoTrat: string;
 
-  exibir = false;
   icone;
   mod = "";
   status = "";
@@ -57,26 +54,39 @@ export class CapMenuItemComponent {
   }
 
   toggleClass(hasChild) {
+ 
+    //this.ngOnChanges();
 
     let codigoDividido = this.value.codigo.split('#',2);
     this.codigoTrat = codigoDividido[1];
-
-    this.selecionar.emit(hasChild[0].codigo);
-
     if (hasChild) {
-      this.exibir = !this.exibir;
+      this.selecionar.emit(hasChild[0].codigo);
     }
-   
+    
+    this.exibir = !this.exibir;
+  
     // console.log("codigoTrat = "+ this.codigoTrat);
     // console.log("blocSelecionado = "+ this.blocSelecionado);
-    // console.log("hasChild.codigo = "+hasChild[0].codigo);
+    // console.log("hasChild0.codigo = "+hasChild[0].codigo);
   }
  
-
+  ngOnChanges(changes): void{
+     
+      if(changes.blocSelecionado){
+        if(this.codigoTrat !== changes.blocSelecionado.currentValue){
+          this.exibir = false
+        }
+      }
+     
+  }
+  
   select(item)
    { 
     this.subClass = "ativado"
     this.selecionar.emit(item.codigo);
+  
+    // console.log("codigoTrat2 = "+ this.codigoTrat);
+    // console.log("blocSelecionado2 = "+ this.blocSelecionado);
   }
    
 }
